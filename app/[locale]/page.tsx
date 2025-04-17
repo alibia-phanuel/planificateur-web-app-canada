@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -13,6 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useTranslations } from "next-intl";
 
 const formSchema = z.object({
   email: z.string().email({ message: "L'email n'est pas valide." }),
@@ -22,7 +24,8 @@ const formSchema = z.object({
 });
 
 export default function Home() {
-  // 1. Define your form.
+  const t = useTranslations("auth");
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,34 +34,30 @@ export default function Home() {
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
   }
+
   return (
-    <div className="flex justify-center items-center py-8 px-4 md:h-[calc(100vh)]  max-md:min-h-screen  w-full">
-      <div className="container flex gap-4 items-center   border h-full  shadow rounded">
-        <div className="w-1/2 max-md:w-full h-full  flex flex-col items-center justify-between">
-          <div className=" w-[75%] relative md:top-20">
-            <div className="bg-[url('/images/time.png')]  md:hidden p-4 h-full min-h-[250px] bg-yellow-300  rounded-lg flex-1 bg-cover bg-center bg-no-repeat"></div>
-            <h1 className="text-[40px] max-md:text-[30px]">Bienvenue 👋</h1>
-            <p className="">
-              Aujourd&lsquo;hui est un nouveau jour. C&lsquo;est votre journée.
-              Vous la façonnez. Connectez-vous pour commencer à gérer vos
-              projets.
-            </p>
+    <div className="flex justify-center items-center py-8 px-4 md:h-[calc(100vh)] max-md:min-h-screen w-full">
+      <div className="container flex gap-4 items-center border h-full shadow rounded">
+        <div className="w-1/2 max-md:w-full h-full flex flex-col items-center justify-between">
+          <div className="w-[75%] relative md:top-20">
+            <div className="bg-[url('/images/time.png')] md:hidden p-4 h-full min-h-[250px] bg-yellow-300 rounded-lg flex-1 bg-cover bg-center bg-no-repeat"></div>
+            <h1 className="text-[40px] max-md:text-[30px]">{t("welcome")}</h1>
+            <p>{t("today")}</p>
+            <p>{t("signin.title")}</p>
           </div>
-          <div className="w-[75%]  my-4  relative md:bottom-15">
+
+          <div className="w-[75%] my-4 relative md:bottom-15">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="  w-full">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
                 <FormField
                   control={form.control}
                   name="email"
                   render={({ field }) => (
                     <FormItem className="mb-4">
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>{t("form.email")}</FormLabel>
                       <FormControl>
                         <Input placeholder="Votre Email ..." {...field} />
                       </FormControl>
@@ -72,7 +71,7 @@ export default function Home() {
                   name="password"
                   render={({ field }) => (
                     <FormItem className="mb-4">
-                      <FormLabel>Mot de passe</FormLabel>
+                      <FormLabel>{t("form.password")}</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Votre mot de passe ..."
@@ -87,22 +86,22 @@ export default function Home() {
                   type="submit"
                   className="bg-[#4a9cac] w-full cursor-pointer"
                 >
-                  Se connecter
+                  {t("signinLink")}
                 </Button>
               </form>
             </Form>
-            <p className="text-center  my-4 ">
-              Vous n&apos;avez pas de compte ?{" "}
+            <p className="text-center my-4">
+              {t("signin.noAccount")}{" "}
               <Link href="/Register" className="underline">
-                S&apos;inscrire
+                {t("signin.signupLink")}
               </Link>
             </p>
           </div>
           <div className="text-center text-[#303030] italic my-4 text-[15px]">
-            © 2025 TOUS DROITS RÉSERVÉS
+            {t("copyright")}
           </div>
         </div>
-        <div className="bg-[url('/images/time.png')] max-md:hidden p-4 h-full  rounded-lg flex-1 bg-cover bg-center bg-no-repeat"></div>
+        <div className="bg-[url('/images/time.png')] max-md:hidden p-4 h-full rounded-lg flex-1 bg-cover bg-center bg-no-repeat"></div>
       </div>
     </div>
   );

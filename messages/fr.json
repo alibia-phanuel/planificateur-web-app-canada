@@ -1,0 +1,56 @@
+{
+  "HomePage": {
+    "title": "Bonjour le monde !",
+    "about": "Aller à la page À propos"
+  },
+  "menu": {
+    "agenda": "Agenda",
+    "month": "Mois",
+    "budget": "Budget",
+    "settings": "Paramètres",
+    "account_services": "Compte et Services",
+    "notifications": "Notifications",
+    "premium": "Premium",
+    "help_support": "Aide & Support"
+  },
+
+  "appearance": "Apparence",
+  "language": "Langue",
+  "theme": {
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "locale": {
+    "en": "Anglais",
+    "fr": "Français"
+  },
+
+  "auth": {
+    "welcome": "Bienvenue 👋",
+    "today": "Aujourd'hui est un nouveau jour. C'est votre journée. Vous la façonnez.",
+    "signin": {
+      "title": "Connectez-vous pour commencer à gérer vos projets.",
+      "noAccount": "Vous n'avez pas de compte ?",
+      "signupLink": "S'inscrire"
+    },
+    "form": {
+      "email": "Email",
+      "password": "Mot de passe"
+    },
+    "signinLink": "Se connecter",
+    "copyright": "© 2025 TOUS DROITS RÉSERVÉS"
+  },
+
+  "welcome_message": "Bienvenue 👋",
+  "new_day_message": "Aujourd‘hui est un nouveau jour. C‘est votre journée. Vous la façonnez.",
+  "login_message": "Connectez-vous pour commencer à gérer vos projets.",
+  "register_message": "Inscrivez-vous pour commencer à gérer vos projets.",
+  "email_field": "Email",
+  "password_field": "Mot de passe",
+  "confirm_password_field": "Confirmer le mot de passe",
+  "register_button": "S‘inscrire",
+  "login_button": "Se connecter",
+  "already_have_account_message": "Vous avez déjà un compte ? Se connecter",
+  "footer": "© 2025 TOUS DROITS RÉSERVÉS"
+}

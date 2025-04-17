@@ -1,4 +1,7 @@
 import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useTranslations } from "next-intl";
+
 import {
   Sidebar,
   SidebarContent,
@@ -20,58 +23,58 @@ import {
   Settings,
 } from "lucide-react";
 
-// Menu principal
-const itemsPricipalMenu = [
-  {
-    title: "Agenda",
-    url: "/Agenda",
-    icon: ClipboardList, // Liste de tâches
-  },
-  {
-    title: "Mois",
-    url: "/Mois",
-    icon: Calendar, // Vue mensuelle
-  },
-  {
-    title: "Budget",
-    url: "/Budget",
-    icon: DollarSign, // Gestion financière
-  },
-  {
-    title: "Paramètres",
-    url: "/Settings",
-    icon: Settings, // Réglages
-  },
-];
-
-// Menu optionnel
-const itemsOptionalMenu = [
-  {
-    title: "Notifications",
-    url: "/Notifications",
-    icon: Bell, // Alertes et rappels
-  },
-  {
-    title: "Premium",
-    url: "/Premium",
-    icon: Star, // Fonctionnalités premium
-  },
-  {
-    title: "Aide & Support",
-    url: "/Aide",
-    icon: HelpCircle, // Assistance et FAQ
-  },
-];
 export function AppSidebar() {
+  const t = useTranslations("menu");
+
+  const itemsPricipalMenu = [
+    {
+      title: t("agenda"),
+      url: "/Agenda",
+      icon: ClipboardList,
+    },
+    {
+      title: t("month"),
+      url: "/Mois",
+      icon: Calendar,
+    },
+    {
+      title: t("budget"),
+      url: "/Budget",
+      icon: DollarSign,
+    },
+    {
+      title: t("settings"),
+      url: "/Settings",
+      icon: Settings,
+    },
+  ];
+
+  const itemsOptionalMenu = [
+    {
+      title: t("notifications"),
+      url: "/Notifications",
+      icon: Bell,
+    },
+    {
+      title: t("premium"),
+      url: "/Premium",
+      icon: Star,
+    },
+    {
+      title: t("help_support"),
+      url: "/Aide",
+      icon: HelpCircle,
+    },
+  ];
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupContent className="flex justify-center items-center">
+          <SidebarGroupContent className="flex gap-2 items-center justify-center p-1 rounded cursor-pointer dark:bg-[#f1f0f0]">
             <Image
-              src="/images/logo&iones/logo.jpg"
-              width={130}
-              height={130}
+              src="/images/logo&iones/logo.svg"
+              width={120}
+              height={120}
               alt="Picture of the author"
             />
           </SidebarGroupContent>
@@ -109,7 +112,18 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
-          <SidebarMenuItem>Footer</SidebarMenuItem>
+          <SidebarMenuItem className="flex gap-2 items-center justify-center p-1 rounded cursor-pointer  bg-white text-black dark:bg-[#030712] dark:text-white">
+            <Avatar className="flex justify-center items-center  p-[3px] ">
+              <AvatarImage src="/images/profile.png" />
+              <AvatarFallback>Avatar</AvatarFallback>
+            </Avatar>
+            <div className="flex flex-col">
+              <p className="font-bold text-xl text-gray-500   dark:text-white lowercase ">
+                alibia
+              </p>
+              <p className="text-sm">phanuel.alibia@gmail.com</p>
+            </div>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>

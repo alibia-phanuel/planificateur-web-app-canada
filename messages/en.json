@@ -1,0 +1,53 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page"
+  },
+  "menu": {
+    "agenda": "Agenda",
+    "month": "Month",
+    "budget": "Budget",
+    "settings": "Settings",
+    "account_services": "Account & Services",
+    "notifications": "Notifications",
+    "premium": "Premium",
+    "help_support": "Help & Support"
+  },
+  "appearance": "Appearance",
+  "language": "Language",
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "locale": {
+    "en": "English",
+    "fr": "French"
+  },
+  "auth": {
+    "welcome": "Welcome 👋",
+    "today": "Today is a new day. It's your day. You shape it.",
+    "signin": {
+      "title": "Sign in to start managing your projects.",
+      "noAccount": "Don't have an account?",
+      "signupLink": "Sign up"
+    },
+    "form": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "signinLink": "Sign in",
+    "copyright": "© 2025 ALL RIGHTS RESERVED",
+    "welcomes": "Welcome 👋",
+    "new_day": "Today is a new day. It’s your day. You shape it.",
+    "login_message": "Log in to start managing your projects.",
+    "register_message": "Sign up to start managing your projects.",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "register": "Sign up",
+    "login": "Log in",
+    "already_have_account": "Already have an account? Log in",
+    "footer": "© 2025 ALL RIGHTS RESERVED"
+  }
+}
