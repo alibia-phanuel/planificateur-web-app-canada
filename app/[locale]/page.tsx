@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import { LanguageSelector } from "@/components/language-selector";
 import {
   Form,
   FormControl,
@@ -43,12 +44,15 @@ export default function Home() {
       <div className="container flex gap-4 items-center border h-full shadow rounded">
         <div className="w-1/2 max-md:w-full h-full flex flex-col items-center justify-between">
           <div className="w-[75%] relative md:top-20">
-            <div className="bg-[url('/images/time.png')] md:hidden p-4 h-full min-h-[250px] bg-yellow-300 rounded-lg flex-1 bg-cover bg-center bg-no-repeat"></div>
+            <div className="bg-[url('/images/time.png')] md:hidden p-4 h-full min-h-[250px] max-md:h-[150px] bg-yellow-300 rounded-lg flex-1 bg-cover bg-center bg-no-repeat"></div>
             <h1 className="text-[40px] max-md:text-[30px]">{t("welcome")}</h1>
             <p>{t("today")}</p>
             <p>{t("signin.title")}</p>
           </div>
-
+          <div className="flex justify-center items-center gap-2 mt-4">
+            <LanguageSelector />
+            <p>{t("selectLangue")}</p>
+          </div>
           <div className="w-[75%] my-4 relative md:bottom-15">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
@@ -90,6 +94,7 @@ export default function Home() {
                 </Button>
               </form>
             </Form>
+
             <p className="text-center my-4">
               {t("signin.noAccount")}{" "}
               <Link href="/Register" className="underline">
@@ -97,6 +102,7 @@ export default function Home() {
               </Link>
             </p>
           </div>
+
           <div className="text-center text-[#303030] italic my-4 text-[15px]">
             {t("copyright")}
           </div>

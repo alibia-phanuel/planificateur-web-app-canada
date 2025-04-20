@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { LanguageSelector } from "@/components/language-selector";
 
 // ✅ Schéma de validation avec Zod
 const formSchema = z
@@ -54,13 +55,18 @@ export default function Register() {
       <div className="container flex gap-4 items-center border h-full shadow rounded">
         <div className="w-1/2 max-md:w-full h-full flex flex-col items-center justify-between">
           <div className="w-[75%] relative md:top-20">
-            <div className="bg-[url('/images/time.png')] md:hidden p-4 h-full min-h-[250px] bg-yellow-300 rounded-lg flex-1 bg-cover bg-center bg-no-repeat"></div>
+            <div className="bg-[url('/images/time.png')] md:hidden p-4 h-full min-h-[250px] max-md:h-[150px] bg-yellow-300 rounded-lg flex-1 bg-cover bg-center bg-no-repeat"></div>
             <h1 className="text-[40px] max-md:text-[30px]">Bienvenue 👋</h1>
             <p>
               Aujourd&lsquo;hui est un nouveau jour. C&lsquo;est votre journée.
               Vous la façonnez. Inscrivez-vous pour commencer à gérer vos
               projets.
             </p>
+          </div>
+
+          <div className="flex justify-center items-center gap-2 mt-4">
+            <LanguageSelector />
+            <p>Veuillez choisir votre langue avant de vous connecter.</p>
           </div>
           <div className="w-[75%] my-4 relative md:bottom-15">
             <Form {...form}>
@@ -148,6 +154,7 @@ export default function Register() {
               </Link>
             </p>
           </div>
+
           <div className="text-center text-[#303030] italic my-4 text-[15px]">
             © 2025 TOUS DROITS RÉSERVÉS
           </div>

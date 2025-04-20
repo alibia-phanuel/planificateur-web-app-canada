@@ -29,6 +29,7 @@
   "auth": {
     "welcome": "Bienvenue 👋",
     "today": "Aujourd'hui est un nouveau jour. C'est votre journée. Vous la façonnez.",
+    "selectLangue": "Veuillez choisir votre langue avant de vous connectez.",
     "signin": {
       "title": "Connectez-vous pour commencer à gérer vos projets.",
       "noAccount": "Vous n'avez pas de compte ?",
