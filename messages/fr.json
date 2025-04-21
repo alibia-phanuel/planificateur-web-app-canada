@@ -37,7 +37,9 @@
     },
     "form": {
       "email": "Email",
-      "password": "Mot de passe"
+      "password": "Mot de passe",
+      "placeholder_eMAIL": "Votre Email ...",
+      "placeholder_password": "Votre mot de passe ..."
     },
     "signinLink": "Se connecter",
     "copyright": "© 2025 TOUS DROITS RÉSERVÉS"
@@ -53,5 +55,22 @@
   "register_button": "S‘inscrire",
   "login_button": "Se connecter",
   "already_have_account_message": "Vous avez déjà un compte ? Se connecter",
-  "footer": "© 2025 TOUS DROITS RÉSERVÉS"
+  "footer": "© 2025 TOUS DROITS RÉSERVÉS",
+  "Register": {
+    "welcome": "Bienvenue ",
+    "infos": "Aujourd‘hui est un nouveau jour. C‘est votre journée. Vous la façonnez. Inscrivez-vous pour commencer à gérer vos projets.",
+    "language": "Veuillez choisir votre langue avant de vous inscrire.",
+    "form_name": "Nom",
+    "form_Email": "Email",
+    "form_password": "Mot de passe",
+    "form_Cpasword": "Confirmer le mot de passe",
+    "connect": "S'inscrire",
+    "connect_to": "Vous avez déjà un compte ?",
+    "log": "Se connecter",
+    "footer": "© 2025 TOUS DROITS RÉSERVÉS",
+    "placeholder_name": "Votre nom ...",
+    "placeholder_eMAIL": "Votre Email ...",
+    "placeholder_password": "Votre mot de passe ...",
+    "placeholder_Cpassword": "Confirmez votre mot de passe ..."
+  }
 }

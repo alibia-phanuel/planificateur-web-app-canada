@@ -49,7 +49,7 @@ export default function Home() {
             <p>{t("today")}</p>
             <p>{t("signin.title")}</p>
           </div>
-          <div className="flex justify-center items-center gap-2 mt-4">
+          <div className=" justify-center items-center gap-2 mt-4 flex flex-col px-4 text-center">
             <LanguageSelector />
             <p>{t("selectLangue")}</p>
           </div>
@@ -63,7 +63,10 @@ export default function Home() {
                     <FormItem className="mb-4">
                       <FormLabel>{t("form.email")}</FormLabel>
                       <FormControl>
-                        <Input placeholder="Votre Email ..." {...field} />
+                        <Input
+                          placeholder={t("form.placeholder_eMAIL")}
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -78,7 +81,7 @@ export default function Home() {
                       <FormLabel>{t("form.password")}</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Votre mot de passe ..."
+                          placeholder={t("form.placeholder_password")}
                           {...field}
                         />
                       </FormControl>

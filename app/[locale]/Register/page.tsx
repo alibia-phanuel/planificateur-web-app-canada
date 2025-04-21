@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { LanguageSelector } from "@/components/language-selector";
-
+import { useTranslations } from "next-intl";
 // ✅ Schéma de validation avec Zod
 const formSchema = z
   .object({
@@ -36,6 +36,7 @@ const formSchema = z
   });
 
 export default function Register() {
+  const t = useTranslations("Register");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -56,19 +57,17 @@ export default function Register() {
         <div className="w-1/2 max-md:w-full h-full flex flex-col items-center justify-between">
           <div className="w-[75%] relative md:top-20">
             <div className="bg-[url('/images/time.png')] md:hidden p-4 h-full min-h-[250px] max-md:h-[150px] bg-yellow-300 rounded-lg flex-1 bg-cover bg-center bg-no-repeat"></div>
-            <h1 className="text-[40px] max-md:text-[30px]">Bienvenue 👋</h1>
-            <p>
-              Aujourd&lsquo;hui est un nouveau jour. C&lsquo;est votre journée.
-              Vous la façonnez. Inscrivez-vous pour commencer à gérer vos
-              projets.
-            </p>
+            <h1 className="text-[40px] max-md:text-[30px]">
+              {t("welcome")} 👋
+            </h1>
+            <p className="mb-10">{t("infos")}</p>
           </div>
 
-          <div className="flex justify-center items-center gap-2 mt-4">
+          <div className=" justify-center items-center gap-2 mt-4 flex flex-col px-4 text-center">
             <LanguageSelector />
-            <p>Veuillez choisir votre langue avant de vous connecter.</p>
+            <p>{t("language")} </p>
           </div>
-          <div className="w-[75%] my-4 relative md:bottom-15">
+          <div className="w-[75%] my-4 mt-8 relative md:bottom-15">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
                 {/* Champ Nom */}
@@ -77,9 +76,9 @@ export default function Register() {
                   name="nom"
                   render={({ field }) => (
                     <FormItem className="mb-4">
-                      <FormLabel>Nom</FormLabel>
+                      <FormLabel>{t("form_name")}</FormLabel>
                       <FormControl>
-                        <Input placeholder="Votre nom ..." {...field} />
+                        <Input placeholder={t("placeholder_name")} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -92,9 +91,12 @@ export default function Register() {
                   name="email"
                   render={({ field }) => (
                     <FormItem className="mb-4">
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>{t("form_Email")}</FormLabel>
                       <FormControl>
-                        <Input placeholder="Votre Email ..." {...field} />
+                        <Input
+                          placeholder={t("placeholder_eMAIL")}
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -107,11 +109,11 @@ export default function Register() {
                   name="password"
                   render={({ field }) => (
                     <FormItem className="mb-4">
-                      <FormLabel>Mot de passe</FormLabel>
+                      <FormLabel>{t("form_password")}</FormLabel>
                       <FormControl>
                         <Input
                           type="password"
-                          placeholder="Votre mot de passe ..."
+                          placeholder={t("placeholder_password")}
                           {...field}
                         />
                       </FormControl>
@@ -126,11 +128,11 @@ export default function Register() {
                   name="confirmPassword"
                   render={({ field }) => (
                     <FormItem className="mb-4">
-                      <FormLabel>Confirmer le mot de passe</FormLabel>
+                      <FormLabel>{t("form_Cpasword")}</FormLabel>
                       <FormControl>
                         <Input
                           type="password"
-                          placeholder="Confirmez votre mot de passe ..."
+                          placeholder={t("placeholder_Cpassword")}
                           {...field}
                         />
                       </FormControl>
@@ -143,20 +145,20 @@ export default function Register() {
                   type="submit"
                   className="bg-[#4a9cac] w-full cursor-pointer"
                 >
-                  S&lsquo;inscrire
+                  {t("connect")}
                 </Button>
               </form>
             </Form>
             <p className="text-center my-4">
-              Vous avez déjà un compte ?{" "}
+              {t("connect_to")}{" "}
               <Link href="/" className="underline">
-                Se connecter
+                {t("log")}
               </Link>
             </p>
           </div>
 
           <div className="text-center text-[#303030] italic my-4 text-[15px]">
-            © 2025 TOUS DROITS RÉSERVÉS
+            {t("footer")}
           </div>
         </div>
         <div className="bg-[url('/images/time.png')] max-md:hidden p-4 h-full rounded-lg flex-1 bg-cover bg-center bg-no-repeat"></div>
