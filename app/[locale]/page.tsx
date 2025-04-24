@@ -17,16 +17,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { useTranslations } from "next-intl";
 
-const formSchema = z.object({
-  email: z.string().email({ message: "L'email n'est pas valide." }),
-  password: z.string().min(6, {
-    message: "Le mot de passe doit contenir au moins 6 caractères.",
-  }),
-});
-
 export default function Home() {
   const t = useTranslations("auth");
+  const validationMessage = useTranslations("validation");
 
+  const formSchema = z.object({
+    email: z.string().email({ message: validationMessage("email_invalid") }),
+    password: z.string().min(6, {
+      message: validationMessage("password_min"),
+    }),
+  });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

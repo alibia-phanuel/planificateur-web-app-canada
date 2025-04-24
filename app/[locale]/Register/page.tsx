@@ -15,28 +15,28 @@ import {
 import { Input } from "@/components/ui/input";
 import { LanguageSelector } from "@/components/language-selector";
 import { useTranslations } from "next-intl";
-// ✅ Schéma de validation avec Zod
-const formSchema = z
-  .object({
-    nom: z.string().min(2, {
-      message: "Le nom doit contenir au moins 2 caractères.",
-    }),
-    email: z.string().email({ message: "L'email n'est pas valide." }),
-    password: z.string().min(6, {
-      message: "Le mot de passe doit contenir au moins 6 caractères.",
-    }),
-    confirmPassword: z.string().min(6, {
-      message:
-        "Le mot de passe de confirmation doit contenir au moins 6 caractères.",
-    }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Les mots de passe ne correspondent pas.",
-    path: ["confirmPassword"],
-  });
 
 export default function Register() {
   const t = useTranslations("Register");
+  const validationMessage = useTranslations("validation");
+  // ✅ Schéma de validation avec Zod
+  const formSchema = z
+    .object({
+      nom: z.string().min(2, {
+        message: validationMessage("name_min"),
+      }),
+      email: z.string().email({ message: validationMessage("email_invalid") }),
+      password: z.string().min(6, {
+        message: validationMessage("password_required"),
+      }),
+      confirmPassword: z.string().min(6, {
+        message: validationMessage("password_min"),
+      }),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: validationMessage("password_confirmed"),
+      path: ["confirmPassword"],
+    });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -63,7 +63,7 @@ export default function Register() {
             <p className="mb-10">{t("infos")}</p>
           </div>
 
-          <div className=" justify-center items-center gap-2 mt-4 flex flex-col px-4 text-center">
+          <div className="justify-center z-20 cursor-pointer items-center gap-2 mt-4 flex flex-col px-4 text-center">
             <LanguageSelector />
             <p>{t("language")} </p>
           </div>

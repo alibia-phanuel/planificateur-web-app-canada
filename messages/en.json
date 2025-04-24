@@ -69,5 +69,14 @@
     "placeholder_eMAIL": "Your email ...",
     "placeholder_password": "Your password ...",
     "placeholder_Cpassword": "Confirm your password ..."
+  },
+  "validation": {
+    "name_required": "The name is required.",
+    "name_min": "The name must be at least 3 characters long.",
+    "email_invalid": "The email is not valid.",
+    "email_required": "The email is required.",
+    "password_required": "The password is required.",
+    "password_min": "The password must be at least 6 characters long.",
+    "password_confirmed": "The password confirmation does not match."
   }
 }
