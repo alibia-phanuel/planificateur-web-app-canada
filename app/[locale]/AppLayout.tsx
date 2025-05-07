@@ -5,7 +5,14 @@ import { usePathname } from "next/navigation";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const hideSidebarRoutes = ["/fr", "/en", "/fr/Register", "/en/Register"];
+  const hideSidebarRoutes = [
+    "/fr",
+    "/en",
+    "/fr/Register",
+    "/en/Register",
+    "/fr/ForgotPassword",
+    "/en/ForgotPassword",
+  ];
 
   return (
     <SidebarProvider>
@@ -18,7 +25,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           />
         )}
         {children}
-        
       </main>
     </SidebarProvider>
   );

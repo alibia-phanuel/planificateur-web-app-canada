@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useTranslations } from "next-intl";
-
+import { FaChevronDown } from "react-icons/fa"; // or any other icon
+import { LogOut, MailCheck } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -22,10 +24,58 @@ import {
   HelpCircle,
   Settings,
 } from "lucide-react";
+import { useContext, useState } from "react";
+import { AppContent } from "@/context/AppContext";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export function AppSidebar() {
   const t = useTranslations("menu");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const context = useContext(AppContent);
+  const router = useRouter(); // ✅ instantiate the router
+  if (!context) throw new Error("AppContent not provided");
+  const { userData, backendUrl, setUserData, setIsLoggeding } = context;
 
+  const sendVerificationOtp = async () => {
+    try {
+      axios.defaults.withCredentials = true;
+      const { data } = await axios.post(
+        `${backendUrl}/api/auth/send-verify-otp`,
+        { userId: userData.id }
+      );
+
+      if (data.success) {
+        router.push("/email-verify");
+        toast.success(t(data.messageKey));
+      } else {
+        toast.error(t(data.messageKey));
+      }
+    } catch (error: any) {
+      console.error(error);
+      toast.error(t("otpSendError")); // generic fallback
+    }
+  };
+
+  const logout = async () => {
+    try {
+      axios.defaults.withCredentials = true;
+      const { data } = await axios.post(`${backendUrl}/api/auth/logout`);
+
+      if (data.success) {
+        setIsLoggeding(false);
+        setUserData(null);
+        toast.success(t(data.messageKey)); // translate message
+        router.push("/");
+      } else {
+        toast.error(t(data.messageKey)); // translate error message
+      }
+    } catch (error: any) {
+      console.error(error);
+      toast.error(t("logoutError")); // generic fallback if server error
+    }
+  };
   const itemsPricipalMenu = [
     {
       title: t("agenda"),
@@ -48,7 +98,6 @@ export function AppSidebar() {
       icon: Settings,
     },
   ];
-
   const itemsOptionalMenu = [
     {
       title: t("notifications"),
@@ -66,6 +115,7 @@ export function AppSidebar() {
       icon: HelpCircle,
     },
   ];
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -78,7 +128,7 @@ export function AppSidebar() {
               alt="Picture of the author"
             />
           </SidebarGroupContent>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>{t("application")}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {itemsPricipalMenu.map((item) => (
@@ -93,7 +143,7 @@ export function AppSidebar() {
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
-          <SidebarGroupLabel>Compte et Services</SidebarGroupLabel>
+          <SidebarGroupLabel>{t("account_and_services")}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {itemsOptionalMenu.map((item) => (
@@ -111,20 +161,56 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem className="flex gap-2 items-center justify-center p-1 rounded cursor-pointer  bg-white text-black dark:bg-[#030712] dark:text-white">
-            <Avatar className="flex justify-center items-center  p-[3px] ">
-              <AvatarImage src="/images/profile.png" />
-              <AvatarFallback>Avatar</AvatarFallback>
-            </Avatar>
-            <div className="flex flex-col">
-              <p className="font-bold text-xl text-gray-500   dark:text-white lowercase ">
-                alibia
-              </p>
-              <p className="text-sm">phanuel.alibia@gmail.com</p>
-            </div>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        {/* here the footer */}
+        {userData && (
+          <SidebarMenu>
+            <SidebarMenuItem className="flex gap-2 items-center justify-center p-1 rounded cursor-pointer bg-white text-black dark:bg-[#030712] dark:text-white">
+              <div
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="flex items-center gap-2 cursor-pointer"
+              >
+                <Avatar className="flex justify-center items-center p-[3px]">
+                  <AvatarImage src="/images/profile.png" />
+                  <AvatarFallback>Avatar</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col">
+                  <p className="font-bold text-xl text-gray-500 dark:text-white lowercase">
+                    {userData.name}
+                  </p>
+                  <p className="text-sm">{userData.email}</p>
+                </div>
+                <FaChevronDown
+                  className={`transition-transform ${
+                    menuOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </div>
+
+              {menuOpen && (
+                <div className="absolute bottom-[100%] right-0 left-0 z-10 mt-2   bg-white text-black dark:bg-[#030712] dark:text-white border p-2 min-w-[190px] shadow-md">
+                  <ul>
+                    {!userData.isAccountVerified && (
+                      <li
+                        onClick={sendVerificationOtp}
+                        className="py-1 px-2 cursor-pointer text-sm flex items-center gap-2"
+                      >
+                        <MailCheck size={16} />
+                        {t("verify_email")}
+                      </li>
+                    )}
+                    <li
+                      onClick={logout}
+                      className="py-1 px-2 cursor-pointer text-sm flex items-center gap-2"
+                    >
+                      <LogOut size={16} />
+                      {t("logout")}
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </SidebarMenuItem>
+          </SidebarMenu>
+        )}
       </SidebarFooter>
     </Sidebar>
   );

@@ -1,9 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import { useContext } from "react";
+import { AppContent } from "@/context/AppContext";
+import { useRouter } from "next/navigation"; // ✅ import
+import { toast } from "react-toastify";
+import axios from "axios";
 import {
   Form,
   FormControl,
@@ -17,6 +23,11 @@ import { LanguageSelector } from "@/components/language-selector";
 import { useTranslations } from "next-intl";
 
 export default function Register() {
+  const router = useRouter(); // ✅ instancier le router
+  const context = useContext(AppContent);
+  if (!context) throw new Error("AppContent non fourni");
+  const { backendUrl, setIsLoggeding, getUserData } = context;
+
   const t = useTranslations("Register");
   const validationMessage = useTranslations("validation");
   // ✅ Schéma de validation avec Zod
@@ -47,8 +58,28 @@ export default function Register() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      axios.defaults.withCredentials = true;
+      console.log("🔍 Données soumises :", values);
+      const { data } = await axios.post(`${backendUrl}/api/auth/register`, {
+        name: values.nom,
+        email: values.email,
+        password: values.password,
+      });
+      if (data.success) {
+        setIsLoggeding(true);
+        getUserData();
+        toast.success(t(data.messageKey));
+        router.push("/"); // ✅ redirection
+      } else {
+        alert("bonjour");
+        toast.error(t(data.messageKey));
+      }
+    } catch (error: any) {
+      const messageKey = error.response?.data?.messageKey || "internalError";
+      toast.error(t(messageKey));
+    }
   }
 
   return (

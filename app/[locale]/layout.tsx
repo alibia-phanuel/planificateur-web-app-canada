@@ -4,9 +4,10 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import "./globals.css";
+import { AppContextProvider } from "@/context/AppContext";
 import AppLayout from "./AppLayout";
 import { ThemeProvider } from "@/components/theme-provider";
-
+import { ToastContainer } from "react-toastify";
 // Polices personnalisées
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,22 +40,25 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <NextIntlClientProvider locale={locale}>
-          <AppLayout>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-            </ThemeProvider>
-          </AppLayout>
-        </NextIntlClientProvider>
-      </body>
+      <AppContextProvider>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <NextIntlClientProvider locale={locale}>
+            <AppLayout>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                {children}
+                <ToastContainer />
+              </ThemeProvider>
+            </AppLayout>
+          </NextIntlClientProvider>
+        </body>
+      </AppContextProvider>
     </html>
   );
 }

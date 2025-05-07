@@ -1,7 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
+import { AppContent } from "@/context/AppContext";
+import { useRouter } from "next/navigation"; // ✅ import
+import { toast } from "react-toastify";
+import axios from "axios";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -10,6 +15,7 @@ import {
   Form,
   FormControl,
   FormField,
+  FormDescription,
   FormItem,
   FormLabel,
   FormMessage,
@@ -18,9 +24,13 @@ import { Input } from "@/components/ui/input";
 import { useTranslations } from "next-intl";
 
 export default function Home() {
+  const router = useRouter(); // ✅ instancier le router
+  const context = useContext(AppContent);
+  if (!context) throw new Error("AppContent non fourni");
+  const { backendUrl, setIsLoggeding, getUserData } = context;
   const t = useTranslations("auth");
-  const validationMessage = useTranslations("validation");
 
+  const validationMessage = useTranslations("validation");
   const formSchema = z.object({
     email: z.string().email({ message: validationMessage("email_invalid") }),
     password: z.string().min(6, {
@@ -35,8 +45,28 @@ export default function Home() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      axios.defaults.withCredentials = true;
+      const { data } = await axios.post(`${backendUrl}/api/auth/login`, {
+        email: values.email,
+        password: values.password,
+      });
+
+      if (data.success) {
+        setIsLoggeding(true);
+        setTimeout(() => {
+          getUserData();
+          toast.success(validationMessage(data.messageKey)); // ✅ traduction
+          router.push("/Agenda");
+        }, 100);
+      } else {
+        toast.error(validationMessage(data.messageKey)); // ✅ traduction
+      }
+    } catch (error: any) {
+      const messageKey = error.response?.data?.messageKey || "internalError";
+      toast.error(validationMessage(messageKey)); // ✅ fallback error
+    }
   }
 
   return (
@@ -89,6 +119,12 @@ export default function Home() {
                     </FormItem>
                   )}
                 />
+                <Link href="/ForgotPassword" className="underline mb-4">
+                  <FormDescription className="my-4">
+                    {t("ForgotPassword")}
+                  </FormDescription>
+                </Link>
+
                 <Button
                   type="submit"
                   className="bg-[#4a9cac] w-full cursor-pointer"

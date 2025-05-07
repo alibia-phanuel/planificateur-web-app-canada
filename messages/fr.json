@@ -11,7 +11,16 @@
     "account_services": "Compte et Services",
     "notifications": "Notifications",
     "premium": "Premium",
-    "help_support": "Aide & Support"
+    "help_support": "Aide & Support",
+    "logoutSuccess": "Déconnexion réussie 👋",
+    "accountAlreadyVerified": "Votre compte est déjà vérifié",
+    "otpSent": "Un code OTP a été envoyé à votre adresse e-mail",
+    "otpSendError": "Une erreur est survenue lors de l'envoi de l’OTP",
+    "application": "Application",
+    "account_and_services": "Compte et Services",
+    "verify_email": "Vérifier l'e-mail",
+    "logout": "Se déconnecter",
+    "logoutError": "Erreur lors de la déconnexion"
   },
 
   "appearance": "Apparence",
@@ -30,6 +39,7 @@
     "welcome": "Bienvenue 👋",
     "today": "Aujourd'hui est un nouveau jour. C'est votre journée. Vous la façonnez.",
     "selectLangue": "Veuillez choisir votre langue avant de vous connectez.",
+    "missingDetails": "Veuillez remplir tous les champs.",
     "signin": {
       "title": "Connectez-vous pour commencer à gérer vos projets.",
       "noAccount": "Vous n'avez pas de compte ?",
@@ -42,6 +52,7 @@
       "placeholder_password": "Votre mot de passe ..."
     },
     "signinLink": "Se connecter",
+    "ForgotPassword": "Mot de passe oubliez ?",
     "copyright": "© 2025 TOUS DROITS RÉSERVÉS"
   },
 
@@ -71,7 +82,11 @@
     "placeholder_name": "Votre nom ...",
     "placeholder_eMAIL": "Votre Email ...",
     "placeholder_password": "Votre mot de passe ...",
-    "placeholder_Cpassword": "Confirmez votre mot de passe ..."
+    "placeholder_Cpassword": "Confirmez votre mot de passe ...",
+    "userExists": "L'utilisateur existe déjà.",
+    "registrationSuccess": "Inscription réussie 🚀",
+    "internalError": "Erreur interne du serveur",
+    "missingDetails": "Veuillez remplir tous les champs."
   },
   "validation": {
     "name_required": "Le nom est requis.",
@@ -80,6 +95,66 @@
     "email_required": "L'email est requis.",
     "password_required": "Le mot de passe est requis.",
     "password_min": "Le mot de passe doit contenir au moins 6 caractères.",
-    "password_confirmed": "La confirmation du mot de passe ne correspond pas."
+    "password_confirmed": "La confirmation du mot de passe ne correspond pas.",
+    "missingDetails": "Veuillez remplir tous les champs.",
+    "invalidEmail": "Adresse email incorrecte.",
+    "invalidPassword": "Mot de passe incorrect.",
+    "loginSuccess": "Connexion réussie."
+  },
+  "verifyEmail": {
+    "title": "  Vérification de votre identité",
+    "verify": "Veuillez entrer le code OTP envoyé à votre adresse e-mail pour continuer.",
+    "missingDetails": "Détails manquants",
+    "userNotFound": "Utilisateur introuvable",
+    "invalidOtp": "OTP incorrect",
+    "otpExpired": "Le code OTP a expiré",
+    "accountVerified": "Compte vérifié avec succès",
+    "otpVerificationError": "Une erreur est survenue lors de la vérification de l’OTP"
+  },
+  "forgotPassword": {
+    "emailLabel": "Email",
+    "emailPlaceholder": "Votre email",
+    "otpTitle": "Code de Vérification",
+    "otpInstruction": "Entrez le code reçu",
+    "newPasswordTitle": "Nouveau mot de passe",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "confirmPasswordLabel": "Confirmer le mot de passe",
+    "passwordPlaceholder": "Mot de passe",
+    "confirmPasswordPlaceholder": "Confirmer",
+    "title": "Réinitialisation du mot de passe",
+    "instruction": "Veuillez entrer le code OTP envoyé à votre adresse e-mail pour continuer.",
+    "missingDetails": "Détails manquants",
+    "userNotFound": "Utilisateur introuvable",
+    "otpSent": "OTP envoyé dans votre boîte mail",
+    "otpSendError": "Une erreur est survenue lors de l'envoi de l’OTP",
+    "sendingEmail": "Envoi d’un email en cours...",
+    "resetPassword": "Réinitialiser le mot de passe",
+    "email": "Email",
+    "yourEmail": "Votre email",
+    "send": "Envoyer",
+    "verificationCode": "Code de Vérification",
+    "enterCode": "Entrez le code reçu",
+    "verify": "Vérifier",
+    "newPassword": "Nouveau mot de passe",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "confirm": "Confirmer",
+    "change": "Changer",
+    "invalidOtp": "Le code doit faire 6 chiffres",
+    "shortPassword": "Mot de passe trop court",
+    "shortConfirm": "Confirmation invalide",
+    "passwordMismatch": "Les mots de passe ne correspondent pas",
+    "verifying": "Vérification du code OTP...",
+    "valid": "Code OTP validé !",
+    "invalid": "Code OTP invalide",
+    "resetting": "Changement du mot de passe...",
+    "error": "Erreur lors du changement de mot de passe",
+    "missingResetDetails": "L'email, l'OTP et le nouveau mot de passe sont requis.",
+    "expiredOtp": "OTP expiré.",
+    "passwordResetSuccess": "Mot de passe réinitialisé avec succès.",
+    "internalError": "Une erreur est survenue. Veuillez réessayer.",
+    "invalidEmail": "Adresse e-mail invalide.",
+    "invalidPassword": "Mot de passe incorrect.",
+    "loginSuccess": "Connexion réussie."
   }
 }
