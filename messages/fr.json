@@ -53,7 +53,12 @@
     },
     "signinLink": "Se connecter",
     "ForgotPassword": "Mot de passe oubliez ?",
-    "copyright": "© 2025 TOUS DROITS RÉSERVÉS"
+    "copyright": "© 2025 TOUS DROITS RÉSERVÉS",
+    "userNotFound": "Utilisateur introuvable",
+    "internalError": "Une erreur est survenue. Veuillez réessayer.",
+    "userFetchError": "Erreur de récupération des données utilisateur.",
+    "required": "Accès non autorisé : vous devez être connecté pour effectuer cette action.",
+    "fetching": "Erreur lors de la récupération de l'état d'authentification."
   },
 
   "welcome_message": "Bienvenue 👋",

@@ -42,6 +42,8 @@
     "loginSuccess": "Login successful.",
     "internalError": "Internal server error.",
     "selectLangue": "Please select your language before logging in.",
+    "userNotFound": "User not found",
+    "userFetchError": "Failed to fetch user data.",
     "signin": {
       "title": "Sign in to start managing your projects.",
       "noAccount": "Don't have an account?",
@@ -66,7 +68,9 @@
     "login": "Log in",
     "ForgotPassword": " Forgot Password ?",
     "already_have_account": "Already have an account? Log in",
-    "footer": "© 2025 ALL RIGHTS RESERVED"
+    "footer": "© 2025 ALL RIGHTS RESERVED",
+    "required": "Unauthorized access: you must be logged in to perform this action.",
+    "fetching": "Error while fetching authentication state."
   },
   "Register": {
     "welcome": "Welcome",

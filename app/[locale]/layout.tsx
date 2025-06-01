@@ -40,11 +40,11 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <AppContextProvider>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <NextIntlClientProvider locale={locale}>
+      <NextIntlClientProvider locale={locale}>
+        <AppContextProvider>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
             <AppLayout>
               <ThemeProvider
                 attribute="class"
@@ -56,9 +56,9 @@ export default async function LocaleLayout({
                 <ToastContainer />
               </ThemeProvider>
             </AppLayout>
-          </NextIntlClientProvider>
-        </body>
-      </AppContextProvider>
+          </body>
+        </AppContextProvider>
+      </NextIntlClientProvider>
     </html>
   );
 }
