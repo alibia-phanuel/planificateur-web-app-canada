@@ -26,7 +26,9 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   const [isLoggedin, setIsLoggeding] = useState(false);
   const [userData, setUserData] = useState<any>(null);
-  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const backendUrl =
+    "https://34f3-2c0f-2a80-94e-2f10-4a8-5a76-2c44-ed6c.ngrok-free.app";
+  //  process.env.NEXT_PUBLIC_BACKEND_URL;
 
   // 🔄 Lecture des données depuis localStorage au démarrage
   useEffect(() => {
