@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 168 49.8">
+  <!-- Generator: Adobe Illustrator 29.3.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 151)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #e09f8d;
+        font-family: Poppins-Medium, Poppins;
+        font-weight: 500;
+      }
+
+      .st0, .st1 {
+        font-size: 23.9px;
+      }
+
+      .st1 {
+        font-family: Poppins-Light, Poppins;
+        font-weight: 300;
+      }
+
+      .st2 {
+        fill: #69706e;
+      }
+    </style>
+  </defs>
+  <polygon class="st2" points="127.4 33.2 132.1 48.9 135.5 42.8 142.1 40.5 127.4 33.2"/>
+  <text class="st1" transform="translate(-.7 19.3)"><tspan x="0" y="0">Karine Gélinas</tspan></text>
+  <text class="st0" transform="translate(41.8 47.2)"><tspan x="0" y="0">Studio</tspan></text>
+  <polygon points="127.4 33.2 132.8 48.3 135.8 42.1 142.1 39.5 127.4 33.2"/>
+</svg>
